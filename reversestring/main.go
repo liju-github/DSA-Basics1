@@ -21,3 +21,23 @@ func reversestring(str string) string {
 	return strings.Join(words, "")
 }
 
+
+// package main
+
+// import ("fmt")
+
+// func main(){
+//     str := "helloworld"
+//     strarr := []byte(str)
+//     fmt.Println("reverse : ",reverse(strarr,0,len(str)-1))
+// }
+
+// func reverse(strarr []byte,left,right int) string{
+//     if left > right{
+//         return string(strarr)
+//     }
+    
+//     strarr[left],strarr[right] = strarr[right],strarr[left]
+    
+//     return reverse(strarr,left+1,right-1)
+// }

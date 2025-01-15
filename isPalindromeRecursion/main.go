@@ -28,3 +28,24 @@ func isPalindromeRecursion(str string,left,right int) bool {
 
 
 }
+
+// package main
+
+// import ("fmt")
+
+// func main(){
+//     str:="malayalam";
+    
+//     fmt.Println("palindrome check :",palindrome(str,0,len(str)-1))
+// }
+
+// func palindrome(str string,left int,right int) bool{
+//     if left > right{
+//         return true
+//     }
+    
+//     if str[left] != str[right]{
+//         return false
+//     }
+//     return palindrome(str,left+1,right-1)
+// }

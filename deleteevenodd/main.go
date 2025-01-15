@@ -49,7 +49,7 @@ func (l *linkedlist) Display() {
 		fmt.Printf("%v ", iterator.value)
 		iterator = iterator.tail
 	}
-	fmt.Println("\n")
+	fmt.Println()
 }
 
 func (l *linkedlist) DeleteOdd() {

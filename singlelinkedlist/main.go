@@ -2,125 +2,134 @@ package main
 
 import "fmt"
 
-//beginning of the list
-
-type linkedlist struct {
-	head *node
+// LinkedList represents a singly linked list
+type LinkedList struct {
+	head *Node
 }
 
-type node struct {
+// Node represents a single node in the linked list
+type Node struct {
 	value int
-	next  *node
+	next  *Node
 }
 
 func main() {
-    l := &linkedlist{}
+	l := &LinkedList{}
 	l.AddAtEnd(1)
 	l.AddAtEnd(2)
 	l.AddAtEnd(3)
 	l.AddAtEnd(4)
-	fmt.Println("original array")
+	fmt.Println("Original list:")
 	l.Display()
-	// l.AddToBeginning(2222)
-	// l.AddAfterElement(2222,555)
-	// l.DeleteAtBeginning()
-	// l.DeleteAtEnd()
+
+	l.AddToBeginning(2222)
+	l.AddAfterElement(2, 555)
+	l.DeleteAtBeginning()
+	l.DeleteAtEnd()
 	l.DeleteThisTarget(3)
+	fmt.Println("Updated list:")
 	l.Display()
 }
 
-func (l *linkedlist) AddAtEnd(value int) {
-	iterator := l.head
-	newnode := &node{
-		value: value,
-	}
-	if iterator == nil {
-		l.head = newnode
+// AddAtEnd adds a new node with the given value at the end of the linked list
+// Time Complexity: O(n)
+func (l *LinkedList) AddAtEnd(value int) {
+	newNode := &Node{value: value}
+	if l.head == nil {
+		l.head = newNode
 		return
 	}
-
-	for ;iterator.next != nil; iterator = iterator.next {
-	}
-
-	iterator.next = newnode
-}
-
-func (l *linkedlist) Display ()  {
-   iterator := l.head
-
-   for iterator != nil{
-	fmt.Printf("%v, ",iterator.value)
-    iterator = iterator.next
-   }
-   fmt.Println()
-}
-
-
-func (l *linkedlist)AddToBeginning(value int)  {
 	iterator := l.head
-	newnode := &node{
-		value: value,
-		next: iterator,
+	for iterator.next != nil {
+		iterator = iterator.next
 	}
-	
-	l.head = newnode
+	iterator.next = newNode
 }
 
-
-func (l *linkedlist)AddAfterElement(target int,value int) {
+// Display prints all the elements of the linked list
+// Time Complexity: O(n)
+func (l *LinkedList) Display() {
 	iterator := l.head
-	newnode := &node{
-		value: value,
+	for iterator != nil {
+		fmt.Printf("%v -> ", iterator.value)
+		iterator = iterator.next
 	}
+	fmt.Println("nil")
+}
 
-	for iterator!=nil{
-		if iterator.value == target{
-			temp := iterator.next
-		    iterator.next = newnode
-			newnode.next = temp
+// AddToBeginning adds a new node with the given value at the beginning of the linked list
+// Time Complexity: O(1)
+func (l *LinkedList) AddToBeginning(value int) {
+	newNode := &Node{value: value, next: l.head}
+	l.head = newNode
+}
+
+// AddAfterElement adds a new node with the given value after the first occurrence of the target value
+// Time Complexity: O(n)
+func (l *LinkedList) AddAfterElement(target int, value int) {
+	iterator := l.head
+	for iterator != nil {
+		if iterator.value == target {
+			newNode := &Node{value: value, next: iterator.next}
+			iterator.next = newNode
 			return
 		}
 		iterator = iterator.next
 	}
-
-	fmt.Println("target value is not present")
+	fmt.Println("Target value not found")
 }
 
-func (l *linkedlist)DeleteAtBeginning()  {
-	fmt.Printf("deleting %v \n",l.head.value)
+// DeleteAtBeginning removes the first node of the linked list
+// Time Complexity: O(1)
+func (l *LinkedList) DeleteAtBeginning() {
+	if l.head == nil {
+		fmt.Println("List is empty")
+		return
+	}
+	fmt.Printf("Deleting: %v\n", l.head.value)
 	l.head = l.head.next
 }
 
-func (l *linkedlist)DeleteAtEnd()  {
+// DeleteAtEnd removes the last node of the linked list
+// Time Complexity: O(n)
+func (l *LinkedList) DeleteAtEnd() {
+	if l.head == nil {
+		fmt.Println("List is empty")
+		return
+	}
+	if l.head.next == nil {
+		fmt.Printf("Deleting: %v\n", l.head.value)
+		l.head = nil
+		return
+	}
 	iterator := l.head
-
-	if l.head == nil { //o(1)
-        return
-    }
-
-    if l.head.next == nil { //o(1)
-        l.head = nil
-        return
-    }
-
-	for iterator.next != nil{ //o(n)
-		if iterator.next.next == nil{
-           iterator.next = nil
-		   return
-		}
+	for iterator.next.next != nil {
 		iterator = iterator.next
 	}
+	fmt.Printf("Deleting: %v\n", iterator.next.value)
+	iterator.next = nil
 }
 
-func (l *linkedlist)DeleteThisTarget(target int)  {
+// DeleteThisTarget removes the first node with the given target value
+// Time Complexity: O(n)
+func (l *LinkedList) DeleteThisTarget(target int) {
+	if l.head == nil {
+		fmt.Println("List is empty")
+		return
+	}
+	if l.head.value == target {
+		fmt.Printf("Deleting: %v\n", l.head.value)
+		l.head = l.head.next
+		return
+	}
 	iterator := l.head
-
-	for iterator!=nil{
-        if iterator.next.value == target{
-            iterator.next = iterator.next.next
+	for iterator.next != nil {
+		if iterator.next.value == target {
+			fmt.Printf("Deleting: %v\n", iterator.next.value)
+			iterator.next = iterator.next.next
 			return
 		}
 		iterator = iterator.next
 	}
-	fmt.Println("target not found")
+	fmt.Println("Target not found")
 }

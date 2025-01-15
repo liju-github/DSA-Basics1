@@ -27,3 +27,23 @@ func fibonacci(limit int) []int {
 
     return arr
 }
+
+
+// package main
+// import "fmt"
+
+// func main() {
+//   limit := 10
+//   fmt.Println("fibonacci : ",fibonacci(limit))
+// }
+
+// func fibonacci(limit int)[]int{
+//     arr := make([]int,limit)
+//     arr[0],arr[1] = 0,1
+    
+//     for i:=2;i<limit;i++{
+//         arr[i] = arr[i-1]+arr[i-2];
+//     }
+    
+//     return arr
+// }

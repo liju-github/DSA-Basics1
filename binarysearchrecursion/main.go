@@ -32,3 +32,44 @@ func binarySearchRecursive(arr []int, target int, left, right int) int {
 		return binarySearchRecursive(arr, target, left, mid-1)
 	}
 }	
+
+
+// package main
+
+
+// import (
+//     "fmt"
+//     "sort"
+//     )
+    
+// func main(){
+//     arr := []int{2,3,7,1,9,10,12,66,22,15}
+//     sort.Ints(arr)
+//     fmt.Println("Sorted Array: ",arr)
+//     target := 22
+//     index := BinarySearch(arr,target,0,len(arr)-1)
+//     if index == -1{
+//         fmt.Println("The target is not found in the arr")
+//     }else{
+//         fmt.Printf("The target: %v is found at index %v \n",target,index)
+//     }
+// }
+
+// func BinarySearch(arr []int,target int, left int, right int)int{
+//     if left > right{
+//         return -1
+//     }
+    
+//     mid := (left+right)/2
+    
+//     if target == arr[mid]{
+//         return mid
+//     }else if target > arr[mid]{
+//         return BinarySearch(arr,target,mid+1,right)
+//     }else{
+//         return BinarySearch(arr,target,left,mid-1)
+//     }
+    
+//     return -1
+// }
+
